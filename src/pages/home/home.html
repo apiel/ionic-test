@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Header</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openModal()">
+        {{ 'Login' | translate }}
+      </button>
+
+      <button ion-button>
+        {{ 'Register' | translate }}
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label><ion-icon name="globe"></ion-icon> {{ 'Language' | translate }}</ion-label>
+    <ion-select [(ngModel)]="language" (ngModelChange)="translate.use(language)">
+      <ion-option *ngFor="let lang of langs" [value]="lang">{{ lang }}</ion-option>
+    </ion-select>  
+  </ion-item>  
+
+  <h2>Welcome to Ionic!</h2>
+  <p>
+    This starter project ...
+  </p>
+  <p *ngIf="!posts">
+    Loading posts from API...
+  </p>
+
+  <ion-list *ngIf="posts">
+    <ion-item *ngFor="let post of posts">
+      <h2>
+        {{post.title}}
+      </h2>
+      <ion-badge item-right>{{post.userId}}</ion-badge>
+      <p>{{post.body}}</p>
+    </ion-item>
+  </ion-list>  
+</ion-content>
